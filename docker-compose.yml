@@ -5,14 +5,14 @@ services:
     build: ./
     ports:
       - 9000:80
+      - 9001:81
     volumes:
       - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd/rsa-pub.pem:/usr/local/apache2/conf/rsa-pub.pem
       - ./httpd/static/:/usr/local/apache2/htdocs/
   mockerdemock:
     container_name: mockerdemock
     image: kroonprins/mocker-mock-server:0.1.9
-    ports:
-    - 9001:3000
     volumes:
     - ./mocker/projects:/app/projects
     - ./mocker/rules:/app/rules
