@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  httpd:
+    image: httpd:2.4
+    ports:
+      - 9000:80
+    volumes:
+      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd/static/:/usr/local/apache2/htdocs/
+  mockerdemock:
+    container_name: mockerdemock
+    image: kroonprins/mocker-mock-server:0.1.9
+    ports:
+    - 9001:3000
+    volumes:
+    - ./mocker/projects:/app/projects
+    - ./mocker/rules:/app/rules
+    - ./mocker/.env:/app/.env
